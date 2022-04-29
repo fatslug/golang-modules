@@ -25,6 +25,10 @@ func SetLevel(level int) {
 	logFormat = "2006-01-02 15:04:05"
 }
 
+func SetFormat(format string) {
+	logFormat = format
+}
+
 func Fprintf(w io.Writer, format string, a ...interface{}) (n int, err error) {
 	return fmt.Fprintf(w, format, a...)
 }
@@ -52,7 +56,7 @@ func Error(format string, a ...interface{}) (n int, err error) {
 	return fmt.Fprintf(os.Stdout, value, a...)
 }
 
-func Errors(v ...interface{}) (n int, err error) {
+func Err(v ...interface{}) (n int, err error) {
 	if logLevel > OFF {
 		t := time.Now()
 		value := "[" + t.Format(logFormat) + "] [ERROR] " + fmt.Sprintln(v...)
